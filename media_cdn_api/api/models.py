@@ -12,7 +12,7 @@ from django.db import models
 
 class Hexhash(models.Model):
     path = models.CharField(unique=True, max_length=512)
-    bithex = models.CharField()
+    bithex = models.CharField(max_length=512)
 
     class Meta:
         managed = False
