@@ -10,13 +10,11 @@ from __future__ import unicode_literals
 from django.db import models
 
 
-class Hexhash(models.Model):
-    path = models.CharField(unique=True, max_length=512)
-    bithex = models.CharField(max_length=512)
-
-    class Meta:
-        managed = False
-        db_table = 'hexhash'
+class Hexhash():
+    def all(self):
+        cursor = connection.cursor()
+        cursor.execute('SELECT f.path, h.btihhex FROM hexhash h JOIN filearr f ON f.id = h.file_id}')
+        return cursor.fetchall()
 
 class Country(models.Model):
     code = models.CharField(max_length=2)
@@ -113,6 +111,7 @@ class Server(models.Model):
     ipv6_only = models.BooleanField()
 
     def nfiles(self):
+        # TODO >>> Person.objects.raw('SELECT * FROM myapp_person WHERE last_name = %s', [lname])
         Server.objects.raw("SELECT mirr_get_nfiles('"+self.identifier+"')}).first['mirr_get_nfiles']")
 
     class Meta:
