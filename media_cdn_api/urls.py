@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from media_cdn_api.api import views
 
 urlpatterns = [
+    url(r'^public/mirrors', views.mirrors),
+    url(r'^public/torrents', views.torrents),
     url(r'^admin/', admin.site.urls),
 ]
