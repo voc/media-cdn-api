@@ -9,70 +9,6 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-class Country(models.Model):
-    code = models.CharField(max_length=2)
-    name = models.CharField(max_length=64)
-
-    class Meta:
-        managed = False
-        db_table = 'country'
-
-
-class Filearr(models.Model):
-    path = models.CharField(unique=True, max_length=512)
-    mirrors = models.TextField(blank=True, null=True)  # This field type is a guess.
-
-    class Meta:
-        managed = False
-        db_table = 'filearr'
-
-
-class Hash(models.Model):
-    file = models.ForeignKey(Filearr, models.DO_NOTHING, primary_key=True)
-    mtime = models.IntegerField()
-    size = models.BigIntegerField()
-    md5 = models.BinaryField()
-    sha1 = models.BinaryField()
-    sha256 = models.BinaryField()
-    sha1piecesize = models.IntegerField()
-    sha1pieces = models.BinaryField()
-    btih = models.BinaryField()
-    pgp = models.TextField()
-    zblocksize = models.SmallIntegerField()
-    zhashlens = models.CharField(max_length=8, blank=True, null=True)
-    zsums = models.BinaryField()
-
-    class Meta:
-        managed = False
-        db_table = 'hash'
-
-
-class Marker(models.Model):
-    subtree_name = models.CharField(max_length=128)
-    markers = models.CharField(max_length=512)
-
-    class Meta:
-        managed = False
-        db_table = 'marker'
-
-
-class Pfx2Asn(models.Model):
-    pfx = models.TextField(primary_key=True)  # This field type is a guess.
-    asn = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'pfx2asn'
-
-
-class Region(models.Model):
-    code = models.CharField(max_length=2)
-    name = models.CharField(max_length=64)
-
-    class Meta:
-        managed = False
-        db_table = 'region'
-
 class Server(models.Model):
     identifier = models.CharField(unique=True, max_length=64)
     baseurl = models.CharField(max_length=128)
@@ -106,14 +42,3 @@ class Server(models.Model):
     class Meta:
         managed = False
         db_table = 'server'
-
-
-class Version(models.Model):
-    component = models.TextField()
-    major = models.IntegerField()
-    minor = models.IntegerField()
-    patchlevel = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'version'

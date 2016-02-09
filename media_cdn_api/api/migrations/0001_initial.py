@@ -15,30 +15,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Filearr',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('path', models.CharField(max_length=512, unique=True)),
-                ('mirrors', models.TextField(blank=True, null=True)),
-            ],
-            options={
-                'managed': False,
-                'db_table': 'filearr',
-            },
-        ),
-        migrations.CreateModel(
-            name='Hexhash',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('path', models.CharField(max_length=512, unique=True)),
-                ('bithex', models.CharField(max_length=512)),
-            ],
-            options={
-                'managed': False,
-                'db_table': 'hexhash',
-            },
-        ),
-        migrations.CreateModel(
             name='Server',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
@@ -74,28 +50,6 @@ class Migration(migrations.Migration):
             options={
                 'managed': False,
                 'db_table': 'server',
-            },
-        ),
-        migrations.CreateModel(
-            name='Hash',
-            fields=[
-                ('file', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, primary_key=True, serialize=False, to='api.Filearr')),
-                ('mtime', models.IntegerField()),
-                ('size', models.BigIntegerField()),
-                ('md5', models.BinaryField()),
-                ('sha1', models.BinaryField()),
-                ('sha256', models.BinaryField()),
-                ('sha1piecesize', models.IntegerField()),
-                ('sha1pieces', models.BinaryField()),
-                ('btih', models.BinaryField()),
-                ('pgp', models.TextField()),
-                ('zblocksize', models.SmallIntegerField()),
-                ('zhashlens', models.CharField(blank=True, max_length=8, null=True)),
-                ('zsums', models.BinaryField()),
-            ],
-            options={
-                'managed': False,
-                'db_table': 'hash',
             },
         ),
     ]
