@@ -21,6 +21,6 @@ class MirrorInfo:
 
     def nfiles(self, identifier):
         cursor = connection.cursor()
-        cursor.execute("SELECT mirr_get_nfiles('"+identifier+"')")
+        cursor.execute('SELECT mirr_get_nfiles(%s)', [identifier])
         return cursor.fetchone()[0]
 

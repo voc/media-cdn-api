@@ -12,7 +12,7 @@ def torrents(request):
 def mirrors(request):
     mirrors = Server.objects.filter(enabled=True)
     mi = MirrorInfo()
-    data = [mi.dict(mirror) for mirror in mirrors]
-    return HttpResponse(json.dumps(data), content_type='application/json')
+    mirrors = { 'mirrors': [mi.dict(mirror) for mirror in mirrors] }
+    return HttpResponse(json.dumps(mirrors), content_type='application/json')
 
 
